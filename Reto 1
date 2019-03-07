@@ -1,0 +1,82 @@
+var ball = [];
+
+function setup() {
+  createCanvas(400, 400);
+  for (var i = 0; i < 100; i++) {
+    ball[i] = new Ball();
+  }
+}
+
+function draw() {
+  background(220);
+  for (var i = 0; i < ball.length; i++) {
+    ball[i].mostrar();
+    ball[i].moverx();
+    ball[i].movery();
+    if (ball[i].salirx()) {
+      ball[i].botarx();
+    }
+    if (ball[i].saliry()) {
+      ball[i].botary();
+    }
+  }
+
+}
+class Ball {
+  constructor() {
+    this.x = random(0, 400);
+    this.y = random(0, 400);
+    this.tam = 50;
+    this.velx = 3;
+    this.vely = 6;
+    this.R = 0;
+    this.G = 0;
+    this.B = 0;
+  }
+
+  mostrar() {
+    fill(this.R, this.G, this.B);
+    ellipse(this.x, this.y, this.tam, this.tam);
+  }
+
+  moverx() {
+    this.x = this.x + this.velx;
+  }
+
+  movery() {
+    this.y = this.y + this.vely;
+  }
+
+  salirx() {
+    var res;
+    if (this.x < 25 || this.x > 375) {
+      res = true;
+    } else {
+      res = false;
+    }
+    return res;
+  }
+
+  saliry() {
+    var res;
+    if (this.y < 25 || this.y > 375) {
+      res = true;
+    } else {
+      res = false;
+    }
+    return res;
+  }
+
+  botarx() {
+    this.velx = this.velx * -1;
+    this.R = random(255);
+    this.G = random(255);
+    this.B = random(255);
+  }
+  botary() {
+    this.vely = this.vely * -1
+    this.R = random(255);
+    this.G = random(255);
+    this.B = random(255);
+  }
+}
