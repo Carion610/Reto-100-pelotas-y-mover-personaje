@@ -1,0 +1,52 @@
+var img;
+var y;
+
+function preload() {
+  img = loadImage('Yoshi.png');
+}
+
+function setup() {
+  createCanvas(400, 400);
+
+  y = new Yoshi();
+}
+
+function draw() {
+  background(220);
+  y.mostrar();
+  if (keyIsPressed && keyCode == RIGHT_ARROW) {
+    y.derecha();
+  }
+  if (keyIsPressed && keyCode == LEFT_ARROW) {
+    y.izquierda();
+  }
+  if (keyIsPressed && keyCode == UP_ARROW) {
+    y.arriba();
+  }
+  if (keyIsPressed && keyCode == DOWN_ARROW) {
+    y.abajo();
+  }
+}
+class Yoshi {
+  constructor() {
+    this.x = width / 2;
+    this.y = height / 2;
+  }
+
+  mostrar() {
+    imageMode(CENTER);
+    image(img, this.x, this.y);
+  }
+  derecha() {
+    this.x++;
+  }
+  izquierda() {
+    this.x--;
+  }
+  arriba() {
+    this.y--;
+  }
+  abajo() {
+    this.y++;
+  }
+}
